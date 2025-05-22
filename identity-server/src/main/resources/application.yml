@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: identity-server
+  datasource:
+    url: jdbc:postgresql://localhost:25432/spring-identity-server
+    driver-class-name: org.postgresql.Driver
+    username: admin
+    password: DK8gsWQNqUKZAG7y1k21
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 10
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 20000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 100
+          batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+
+  security:
+    user:
+      name: admin
+      password: admin
+    oauth2:
+      client:
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            user-name-attribute: sub
+        registration:
+          google:
+            client-id:
+            client-secret:
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: openid, profile, email
+
+
+server:
+  port: 8989
+  host: ${HOST_NAME_URL:http://localhost:8989}
