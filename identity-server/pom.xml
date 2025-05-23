@@ -29,6 +29,7 @@
     <properties>
         <java.version>17</java.version>
         <dsl-json.version>1.10.0</dsl-json.version>
+        <commons-lang3.version>3.17.0</commons-lang3.version>
     </properties>
     <dependencies>
         <dependency>
@@ -102,6 +103,11 @@
             <groupId>com.dslplatform</groupId>
             <artifactId>dsl-json-java8</artifactId>
             <version>${dsl-json.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
     </dependencies>
 

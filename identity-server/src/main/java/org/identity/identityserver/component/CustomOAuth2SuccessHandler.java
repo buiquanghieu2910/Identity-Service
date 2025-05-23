@@ -1,6 +1,5 @@
-package org.identity.identityserver.configuration;
+package org.identity.identityserver.component;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -33,7 +32,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
-                                        Authentication authentication) throws IOException, ServletException {
+                                        Authentication authentication) throws IOException {
 
         // Đảm bảo chỉ xử lý nếu là OAuth2 login
         if (!(authentication instanceof OAuth2AuthenticationToken oauthToken)) {

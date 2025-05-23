@@ -1,10 +1,13 @@
 package org.identity.identityserver.configuration;
 
+import org.identity.identityserver.component.DatabaseClientRegistrationRepository;
 import org.identity.identityserver.filter.DynamicCorsFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
 /**
@@ -26,5 +29,11 @@ public class ApplicationConfig {
     @Bean
     public ForwardedHeaderFilter forwardedHeaderFilter() {
         return new ForwardedHeaderFilter();
+    }
+
+    @Bean
+    @Primary
+    public ClientRegistrationRepository clientRegistrationRepository(DatabaseClientRegistrationRepository repo) {
+        return repo;
     }
 }

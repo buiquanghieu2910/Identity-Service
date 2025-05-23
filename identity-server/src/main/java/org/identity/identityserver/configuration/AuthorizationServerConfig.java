@@ -5,8 +5,12 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import lombok.RequiredArgsConstructor;
-import org.identity.identityserver.repository.CustomRegisteredClientRepository;
+import org.identity.identityserver.component.CustomAuthorizationRequestResolver;
+import org.identity.identityserver.component.CustomOAuth2FailureHandler;
+import org.identity.identityserver.component.CustomOAuth2SuccessHandler;
+import org.identity.identityserver.filter.RedirectPreservingEntryPoint;
 import org.identity.identityserver.repository.ApplicationRepository;
+import org.identity.identityserver.repository.CustomRegisteredClientRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,6 +55,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AuthorizationServerConfig {
     private final CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
+    private final CustomOAuth2FailureHandler customOAuth2FailureHandler;
     private final CustomAuthorizationRequestResolver customAuthorizationRequestResolver;
 
     @Value("${server.host}")
@@ -113,7 +118,7 @@ public class AuthorizationServerConfig {
                                 .authorizationRequestResolver(customAuthorizationRequestResolver)
                         )
                         .successHandler(customOAuth2SuccessHandler)
-
+                        .failureHandler(customOAuth2FailureHandler)
                 )
         ;
         return http.build();

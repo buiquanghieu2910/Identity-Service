@@ -1,4 +1,4 @@
-package org.identity.identityserver.configuration;
+package org.identity.identityserver.component;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

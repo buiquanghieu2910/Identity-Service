@@ -29,22 +29,27 @@ spring:
     user:
       name: admin
       password: admin
-    oauth2:
-      client:
-        provider:
-          google:
-            authorization-uri: https://accounts.google.com/o/oauth2/auth
-            token-uri: https://oauth2.googleapis.com/token
-            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
-            user-name-attribute: sub
-        registration:
-          google:
-            client-id:
-            client-secret:
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            scope: openid, profile, email
+#    oauth2:
+#      client:
+#        provider:
+#          google:
+#            authorization-uri: https://accounts.google.com/o/oauth2/auth
+#            token-uri: https://oauth2.googleapis.com/token
+#            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+#            user-name-attribute: sub
+#            jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
+#        registration:
+#          google:
+#            client-id:
+#            client-secret:
+#            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+#            scope: openid, profile, email
 
 
 server:
   port: 8989
   host: ${HOST_NAME_URL:http://localhost:8989}
+
+#logging:
+#  level:
+#    org.springframework.security: DEBUG

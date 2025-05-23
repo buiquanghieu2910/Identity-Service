@@ -1,4 +1,4 @@
-package org.identity.identityserver.configuration;
+package org.identity.identityserver.filter;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

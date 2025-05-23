@@ -27,4 +27,7 @@ public interface ApplicationRepository extends JpaRepository<Application, UUID> 
             "JOIN UserEntity ue ON u.id.userEntityId = ue.id " +
             "WHERE a.clientId = :clientId AND ue.identifier = :identifier")
     Boolean checkAcceptByIdentifier(@Param("clientId") String clientId, @Param("identifier") String identifier);
+
+    @Query("SELECT a.name FROM Application a WHERE a.clientId = :clientId")
+    String findNameByClientId(@Param("clientId") String clientId);
 }
