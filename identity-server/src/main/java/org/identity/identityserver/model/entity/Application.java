@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.identity.identityserver.converter.SetToStringConverter;
 import org.identity.identityserver.model.entity.base.BaseEntity;
+import org.identity.identityserver.model.enumable.Status;
 
 import java.util.Set;
 import java.util.UUID;
@@ -41,4 +42,6 @@ public class Application extends BaseEntity {
     private Boolean googleLoginEnable;
     @Convert(converter = SetToStringConverter.class)
     private Set<String> webOrigins;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }

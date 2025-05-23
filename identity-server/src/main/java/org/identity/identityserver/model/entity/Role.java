@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.identity.identityserver.model.entity.base.BaseEntity;
+import org.identity.identityserver.model.enumable.Status;
 
 import java.util.UUID;
 
@@ -29,4 +30,6 @@ public class Role extends BaseEntity {
     private String name;
     @Column(length = 50, unique = true)
     private String code;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }

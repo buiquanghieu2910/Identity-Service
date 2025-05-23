@@ -26,9 +26,9 @@ spring:
       ddl-auto: update
 
   security:
-    user:
-      name: admin
-      password: admin
+#    user:
+#      name: admin
+#      password: admin
 #    oauth2:
 #      client:
 #        provider:

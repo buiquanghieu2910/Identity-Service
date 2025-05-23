@@ -1,8 +1,8 @@
 package org.identity.identityserver.component;
 
+import lombok.RequiredArgsConstructor;
 import org.identity.identityserver.model.entity.OAuthClientRegistration;
 import org.identity.identityserver.repository.OAuthClientRegistrationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -17,10 +17,9 @@ import java.util.Iterator;
  * DatabaseClientRegistrationRepository.java
  */
 @Component("dynamicClientRegistrationRepository")
+@RequiredArgsConstructor
 public class DatabaseClientRegistrationRepository implements ClientRegistrationRepository, Iterable<ClientRegistration> {
-
-    @Autowired
-    private OAuthClientRegistrationRepository oAuthClientRegistrationRepository; // repo từ DB
+    private final OAuthClientRegistrationRepository oAuthClientRegistrationRepository;
 
     @Override
     public ClientRegistration findByRegistrationId(String registrationId) {

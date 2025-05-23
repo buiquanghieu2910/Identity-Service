@@ -11,6 +11,8 @@ import org.identity.identityserver.component.CustomOAuth2SuccessHandler;
 import org.identity.identityserver.filter.RedirectPreservingEntryPoint;
 import org.identity.identityserver.repository.ApplicationRepository;
 import org.identity.identityserver.repository.CustomRegisteredClientRepository;
+import org.identity.identityserver.repository.UserEntityRepository;
+import org.identity.identityserver.service.impl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +24,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
@@ -173,23 +173,10 @@ public class AuthorizationServerConfig {
         return new NimbusJwtEncoder(jwkSource);
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return username -> {
-            if (username.equals("admin")) {
-                return org.springframework.security.core.userdetails.User.withUsername("admin")
-                        .password(passwordEncoder().encode("admin"))
-                        .roles("ADMIN")
-                        .build();
-            } else {
-                throw new UsernameNotFoundException("User not found");
-            }
-        };
+    public UserDetailsService userDetailsService(UserEntityRepository userEntityRepository) {
+        return new CustomUserDetailsService(userEntityRepository);
     }
 
     @Bean

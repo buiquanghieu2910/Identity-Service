@@ -1,4 +1,4 @@
-package org.identity.identityserver.configuration;
+package org.identity.identityserver.component;
 
 import lombok.extern.slf4j.Slf4j;
 import org.identity.identityserver.repository.ApplicationRepository;

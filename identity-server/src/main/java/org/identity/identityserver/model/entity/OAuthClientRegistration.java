@@ -5,9 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.identity.identityserver.model.entity.base.BaseEntity;
 
 import java.util.UUID;
 
@@ -16,13 +18,14 @@ import java.util.UUID;
  * 5/23/2025
  * OAuthClientRegistration.java
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Table(name = "oauth_client_registration")
 @Accessors(chain = true)
 @DynamicInsert
 @DynamicUpdate
-public class OAuthClientRegistration {
+public class OAuthClientRegistration extends BaseEntity {
     @Id
     @GeneratedValue
     private UUID id;
@@ -37,6 +40,6 @@ public class OAuthClientRegistration {
     private String jwkSetUri;
 
     private String redirectUriTemplate;
-    private String scope; // "email,profile" - dạng CSV
+    private String scope; // "email,profile"
     private String userNameAttributeName;
 }

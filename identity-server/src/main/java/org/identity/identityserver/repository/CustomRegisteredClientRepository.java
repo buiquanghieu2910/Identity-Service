@@ -70,7 +70,7 @@ public class CustomRegisteredClientRepository implements RegisteredClientReposit
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .authorizationGrantType(AuthorizationGrantType.TOKEN_EXCHANGE)
                 .redirectUris(uris -> uris.addAll(application.getRedirectUris()))
-                .scopes(scopes -> scopes.addAll(Set.of(application.getScope().split(" "))))
+                .scopes(scopes -> scopes.addAll(Set.of(application.getScope().split(","))))
                 .clientSettings(ClientSettings.builder()
                         .requireAuthorizationConsent(false)
                         .build())
