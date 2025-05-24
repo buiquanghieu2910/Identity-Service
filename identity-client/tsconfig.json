@@ -7,5 +7,10 @@
     {
       "path": "./tsconfig.app.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "strict": false,
+    "lib": ["es2022", "dom"],
+  }
 }

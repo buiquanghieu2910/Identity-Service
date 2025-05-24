@@ -6,5 +6,9 @@ package org.identity.identityserver.exception;
  * ErrorCode.java
  */
 public class ErrorCode extends CommonError {
+    public static final BusinessErrorCode INVALID_PARAMETERS =
+            new BusinessErrorCode(4001, "Invalid Parameters.", 400);
 
+    public static final BusinessErrorCode INVALID_PAGE =
+            new BusinessErrorCode(4002, "Invalid page.", 400);
 }

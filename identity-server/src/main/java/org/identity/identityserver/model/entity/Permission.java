@@ -28,8 +28,7 @@ public class Permission extends BaseEntity {
     @GeneratedValue
     private UUID id;
     private String name;
-    @Column(length = 50, unique = true)
-    private String code;
+    private String description;
     private UUID roleId;
     @Embedded
     private ResourceScopeId resourceScopeId;

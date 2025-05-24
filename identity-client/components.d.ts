@@ -8,6 +8,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ApplicationCredentialComponent: typeof import('./src/components/applications/details/ApplicationCredentialComponent.vue')['default']
+    ApplicationDetailComponent: typeof import('./src/components/applications/ApplicationDetailComponent.vue')['default']
+    ApplicationList: typeof import('./src/components/applications/ApplicationListView.vue')['default']
+    ApplicationListComponent: typeof import('./src/components/applications/ApplicationListComponent.vue')['default']
+    ApplicationSessionComponent: typeof import('./src/components/applications/details/ApplicationSessionComponent.vue')['default']
+    ApplicationSettingComponent: typeof import('./src/components/applications/ApplicationSettingComponent.vue')['default']
     AutoComplete: typeof import('primevue/autocomplete')['default']
     BestSellingWidget: typeof import('./src/components/dashboard/BestSellingWidget.vue')['default']
     Button: typeof import('primevue/button')['default']
@@ -38,6 +44,7 @@ declare module 'vue' {
     MultiSelect: typeof import('primevue/multiselect')['default']
     NotificationsWidget: typeof import('./src/components/dashboard/NotificationsWidget.vue')['default']
     OrderList: typeof import('primevue/orderlist')['default']
+    Password: typeof import('primevue/password')['default']
     PickList: typeof import('primevue/picklist')['default']
     PricingWidget: typeof import('./src/components/landing/PricingWidget.vue')['default']
     ProgressBar: typeof import('primevue/progressbar')['default']
@@ -52,7 +59,13 @@ declare module 'vue' {
     Slider: typeof import('primevue/slider')['default']
     SplitButton: typeof import('primevue/splitbutton')['default']
     StatsWidget: typeof import('./src/components/dashboard/StatsWidget.vue')['default']
+    Tab: typeof import('primevue/tab')['default']
+    TabList: typeof import('primevue/tablist')['default']
+    TabPanel: typeof import('primevue/tabpanel')['default']
+    TabPanels: typeof import('primevue/tabpanels')['default']
+    Tabs: typeof import('primevue/tabs')['default']
     Tag: typeof import('primevue/tag')['default']
+    TagStatus: typeof import('./src/components/commons/TagStatus.vue')['default']
     Textarea: typeof import('primevue/textarea')['default']
     Toast: typeof import('primevue/toast')['default']
     ToggleButton: typeof import('primevue/togglebutton')['default']
@@ -63,6 +76,8 @@ declare module 'vue' {
     TreeTable: typeof import('primevue/treetable')['default']
   }
   export interface ComponentCustomProperties {
+    Ripple: typeof import('primevue/ripple')['default']
     StyleClass: typeof import('primevue/styleclass')['default']
+    Tooltip: typeof import('primevue/tooltip')['default']
   }
 }

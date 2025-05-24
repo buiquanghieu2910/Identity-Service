@@ -27,9 +27,8 @@ public class Role extends BaseEntity {
     @Id
     @GeneratedValue
     private UUID id;
+    private UUID applicationId;
     private String name;
-    @Column(length = 50, unique = true)
-    private String code;
     @Enumerated(EnumType.STRING)
     private Status status;
 }

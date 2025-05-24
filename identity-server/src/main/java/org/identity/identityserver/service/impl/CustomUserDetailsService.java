@@ -1,6 +1,5 @@
 package org.identity.identityserver.service.impl;
 
-import lombok.RequiredArgsConstructor;
 import org.identity.identityserver.model.entity.UserEntity;
 import org.identity.identityserver.repository.UserEntityRepository;
 import org.springframework.security.core.userdetails.User;

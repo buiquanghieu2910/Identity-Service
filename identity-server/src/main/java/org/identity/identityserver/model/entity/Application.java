@@ -30,8 +30,6 @@ public class Application extends BaseEntity {
     @GeneratedValue
     private UUID id;
     private String name;
-    @Column(length = 50, unique = true)
-    private String code;
     private String description;
     @Column(length = 50, unique = true)
     private String clientId;
