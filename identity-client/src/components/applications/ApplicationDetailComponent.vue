@@ -34,7 +34,7 @@ onMounted(async () => {
 })
 
 watch(
-  () => route.matched.at(-1)?.path,
+  () => route.matched.slice(-1)[0]?.path,
   (newPath) => {
     const segments = newPath.split('/')
     pathChild.value = segments[segments.length - 1]
