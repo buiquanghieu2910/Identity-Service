@@ -3,3 +3,15 @@
 @use '@/assets/tailwind.css';
 @use '@/assets/layout/layout.scss';
 @use '@/assets/demo/demo.scss';
+
+.button-fixed-bottom-end {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+  background: var(--surface-card);
+  border-top: 1px solid #ddd;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  z-index: 998;
+}

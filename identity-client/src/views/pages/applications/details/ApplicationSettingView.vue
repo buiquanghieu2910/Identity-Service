@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import ApplicationSessionComponent from '@/components/applications/details/ApplicationSessionComponent.vue'
+import ApplicationSettingComponent from '@/components/applications/details/ApplicationSettingComponent.vue'
 
 defineProps(['application'])
 
 </script>
 
 <template>
-  <ApplicationSessionComponent :application="application" />
+  <ApplicationSettingComponent :application="application" />
 </template>
 
 <style scoped lang="scss">

@@ -1,6 +1,6 @@
 <script setup>
-import { useLayout } from '@/layout/composables/layout.js';
-import AppConfigurator from './AppConfigurator.vue';
+import { useLayout } from '@/layout/composables/layout.js'
+import AppConfigurator from './AppConfigurator.vue'
 
 const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
 </script>

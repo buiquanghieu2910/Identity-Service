@@ -18,16 +18,18 @@ const emit = defineEmits<{
 }>()
 
 const tabs = ref([
-  { label: 'Settings', content: 'Tab 1 Content', route: 'settings' },
-  { label: 'Credentials', content: 'Tab 2 Content', route: 'credentials' },
-  { label: 'Authorization', content: 'Tab 3 Content', route: 'authorization' },
-  { label: 'Sessions', content: 'Tab 3 Content', route: 'sessions' },
-  { label: 'Advanced', content: 'Tab 3 Content', route: 'advanced' },
-]);
+  { label: 'Settings', route: 'settings' },
+  { label: 'Credentials', route: 'credentials' },
+  { label: 'Roles', route: 'roles' },
+  { label: 'System menu', route: 'system-menu' },
+  { label: 'Authorization', route: 'authorization' },
+  { label: 'Sessions', route: 'sessions' },
+  { label: 'Advanced', route: 'advanced' }
+])
 
 const application = ref<ApplicationResponse>()
 
-const pathChild = ref('')
+const pathChild = ref('settings')
 
 onMounted(async () => {
   await getApplication()
@@ -37,7 +39,7 @@ watch(
   () => route.matched.slice(-1)[0]?.path,
   (newPath) => {
     const segments = newPath.split('/')
-    pathChild.value = segments[segments.length - 1]
+    pathChild.value = segments[3]
   },
   { immediate: true }
 )
@@ -60,14 +62,15 @@ const getApplication = async () => {
 <template>
   <Tabs :value="pathChild">
     <TabList>
-      <Tab v-for="(tab, index) in tabs" :key="index" :value="tab.route" @click="() => router.push(`/applications/${props.applicationId}/${tab.route}`)">
+      <Tab v-for="(tab, index) in tabs" :key="index" :value="tab.route"
+           @click="() => router.push({ name: `application-${tab.route}`})">
         {{ tab.label }}
       </Tab>
     </TabList>
   </Tabs>
 
-  <div class="mt-10">
-    <router-view v-if="application" :application="application"/>
+  <div class="mt-5">
+    <router-view v-if="application" :application="application" />
   </div>
 </template>
 

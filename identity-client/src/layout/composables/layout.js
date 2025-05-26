@@ -1,4 +1,4 @@
-import { computed, reactive } from 'vue';
+import { computed, reactive } from 'vue'
 
 const layoutConfig = reactive({
     preset: 'Aura',
