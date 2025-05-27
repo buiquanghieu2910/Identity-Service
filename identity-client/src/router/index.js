@@ -14,7 +14,7 @@ const router = createRouter({
           component: () => import('@/views/pages/applications/ApplicationListView.vue')
         },
         {
-          path: '/applications/:id',
+          path: '/applications/:applicationId',
           name: 'application-detail',
           component: () => import('@/views/pages/applications/ApplicationDetailView.vue'),
           redirect: to => {
@@ -47,14 +47,19 @@ const router = createRouter({
               component: () => import('@/views/pages/applications/details/ApplicationAuthorizationView.vue'),
               name: 'application-authorization',
               redirect: to => {
-                const { id } = to.params
-                return `/applications/${id}/authorization/resources`
+                const { applicationId } = to.params
+                return `/applications/${applicationId}/authorization/resources`
               },
               children: [
                 {
                   path: 'resources',
-                  component: () => import('@/views/pages/applications/details/authorizations/ApplicationAuthorizationResourceView.vue'),
-                  name: 'application-authorization-resources'
+                  component: () => import('@/views/pages/applications/details/authorizations/resources/ApplicationAuthorizationResourceView.vue'),
+                  name: 'application-authorization-resources',
+                },
+                {
+                  path: 'resources/:resourceId',
+                  component: () => import('@/views/pages/applications/details/authorizations/resources/ApplicationAuthorizationResourceDetailView.vue'),
+                  name: 'application-authorization-resource-detail'
                 },
                 {
                   path: 'scopes',

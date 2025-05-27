@@ -8,6 +8,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ApplicationAuthorizationResourceDetailComponent: typeof import('./src/components/applications/details/authorizations/resources/ApplicationAuthorizationResourceDetailComponent.vue')['default']
+    ApplicationAuthorizationResourceListComponent: typeof import('./src/components/applications/details/authorizations/resources/ApplicationAuthorizationResourceListComponent.vue')['default']
     ApplicationCredentialComponent: typeof import('./src/components/applications/details/ApplicationCredentialComponent.vue')['default']
     ApplicationDetailComponent: typeof import('./src/components/applications/ApplicationDetailComponent.vue')['default']
     ApplicationListComponent: typeof import('./src/components/applications/ApplicationListComponent.vue')['default']
@@ -21,6 +23,7 @@ declare module 'vue' {
     InputGroup: typeof import('primevue/inputgroup')['default']
     InputGroupAddon: typeof import('primevue/inputgroupaddon')['default']
     InputText: typeof import('primevue/inputtext')['default']
+    MultiSelect: typeof import('primevue/multiselect')['default']
     Password: typeof import('primevue/password')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

@@ -60,7 +60,7 @@ const getApplication = async () => {
 </script>
 
 <template>
-  <Tabs :value="pathChild">
+  <Tabs :value="pathChild" scrollable>
     <TabList>
       <Tab v-for="(tab, index) in tabs" :key="index" :value="tab.route"
            @click="() => router.push({ name: `application-${tab.route}`})">

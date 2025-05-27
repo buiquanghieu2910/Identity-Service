@@ -21,3 +21,16 @@ export interface PaginatorData {
   total: number;
   totalPages: number;
 }
+
+export class ResponseCommon {
+  id: string = ''
+  createdAt?: Date
+  createdBy: string = ''
+  updatedAt?: Date
+  updatedBy: string = ''
+}
+
+export class IdNameResponse {
+  id: string = '';
+  name: string = '';
+}

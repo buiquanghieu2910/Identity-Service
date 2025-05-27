@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 import { ref } from 'vue'
 
 const route = useRoute()
-const id = route.params.id as string
+const applicationId = route.params.applicationId as string
 const applicationName = ref<string>('')
 
 </script>
@@ -13,7 +13,7 @@ const applicationName = ref<string>('')
 <template>
   <div class="card">
     <h3>Applications | {{ applicationName }}</h3>
-    <ApplicationSettingComponent :application-id="id" @application-name="applicationName = $event" />
+    <ApplicationSettingComponent :application-id="applicationId" @application-name="applicationName = $event" />
   </div>
 </template>
 

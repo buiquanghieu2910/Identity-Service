@@ -29,6 +29,7 @@ public class Resource extends BaseEntity {
     @Id
     @GeneratedValue
     private UUID id;
+    private UUID applicationId;
     private String name;
     private String description;
 }

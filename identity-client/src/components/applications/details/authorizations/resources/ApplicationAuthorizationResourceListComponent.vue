@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { fetchApplications } from '@/service/ApplicationService.ts'
-import { hideLoading, showLoading } from '@/service/LoadingService.ts'
-import type { ApplicationResponse } from '@/model/response/ApplicationResponse.ts'
 import type { SearchParams } from '@/model/Common.ts'
 import { PAGE_DEFAULT, PAGE_SIZE_DEFAULT } from '@/constants/Constant.ts'
+import { onMounted, ref } from 'vue'
+import { hideLoading, showLoading } from '@/service/LoadingService.ts'
+import type { ResourceResponse } from '@/model/response/ResourceResponse.ts'
+import { fetchResources } from '@/service/ResourceService.ts'
 import TagStatus from '@/components/commons/TagStatus.vue'
 
+const props = defineProps<{
+  applicationId: string;
+}>()
+
 const columns = ref([
-    { header: 'Client ID', field: 'clientId', dataType: 'link' },
-    { header: 'Name', field: 'name', dataType: 'text' },
-    { header: 'Description', field: 'description', dataType: 'text' },
-    { header: 'Status', field: 'status', dataType: 'status' }
+    { header: 'Name', field: 'name', dataType: 'link' },
+    { header: 'Description', field: 'description', dataType: 'text' }
   ]
 )
 
@@ -19,16 +21,21 @@ const paramSearch: SearchParams = {
   page: PAGE_DEFAULT,
   size: PAGE_SIZE_DEFAULT,
   sort: [],
-  search: []
+  search: [
+    {
+      field: 'applicationId',
+      value: props.applicationId
+    }
+  ]
 }
 
-const applications = ref<ApplicationResponse[]>([])
+const resources = ref<ResourceResponse[]>([])
 
-const loadApplications = async () => {
+const loadResources = async () => {
   try {
     showLoading()
-    const resp = await fetchApplications({ ...paramSearch })
-    applications.value = resp?.data || []
+    const resp = await fetchResources({ ...paramSearch })
+    resources.value = resp?.data || []
   } catch (error) {
   } finally {
     hideLoading()
@@ -36,20 +43,22 @@ const loadApplications = async () => {
 }
 
 onMounted(async () => {
-  await loadApplications()
+  await loadResources()
 })
 
 </script>
 
 <template>
-  <DataTable class="mt-5" :value="applications" :scrollable="true" scrollHeight="500px">
+  <DataTable class="mt-5" :value="resources" :scrollable="true" scrollHeight="500px">
     <Column v-for="(col, index) in columns" :key="index" :header="col.header" :field="col.field">
       <template #body="slotProps">
         <template v-if="col.dataType==='status'">
           <TagStatus :value="slotProps.data[col.field]" />
         </template>
         <template v-else-if="col.dataType==='link'">
-          <router-link :to="{name: 'application-settings', params: {applicationId: slotProps.data.id}}" :class="`text-primary-500 hover:underline`">
+          <router-link
+            :to="{name: 'application-authorization-resource-detail', params: {applicationId: props.applicationId, resourceId: slotProps.data.id}}"
+            :class="`text-primary-500 hover:underline`">
             {{ slotProps.data[col.field] }}
           </router-link>
         </template>
