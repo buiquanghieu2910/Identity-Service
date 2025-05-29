@@ -8,8 +8,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ApplicationAuthorizationPermissionDetailComponent: typeof import('./src/components/applications/details/authorizations/permissions/ApplicationAuthorizationPermissionDetailComponent.vue')['default']
+    ApplicationAuthorizationPermissionListComponent: typeof import('./src/components/applications/details/authorizations/permissions/ApplicationAuthorizationPermissionListComponent.vue')['default']
     ApplicationAuthorizationResourceDetailComponent: typeof import('./src/components/applications/details/authorizations/resources/ApplicationAuthorizationResourceDetailComponent.vue')['default']
     ApplicationAuthorizationResourceListComponent: typeof import('./src/components/applications/details/authorizations/resources/ApplicationAuthorizationResourceListComponent.vue')['default']
+    ApplicationAuthorizationScopeDetailComponent: typeof import('./src/components/applications/details/authorizations/scopes/ApplicationAuthorizationScopeDetailComponent.vue')['default']
+    ApplicationAuthorizationScopeListComponent: typeof import('./src/components/applications/details/authorizations/scopes/ApplicationAuthorizationScopeListComponent.vue')['default']
     ApplicationCredentialComponent: typeof import('./src/components/applications/details/ApplicationCredentialComponent.vue')['default']
     ApplicationDetailComponent: typeof import('./src/components/applications/ApplicationDetailComponent.vue')['default']
     ApplicationListComponent: typeof import('./src/components/applications/ApplicationListComponent.vue')['default']

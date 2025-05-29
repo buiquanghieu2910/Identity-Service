@@ -24,8 +24,19 @@ public interface ScopeRepository extends JpaRepository<Scope, UUID> {
             "WHERE s.applicationId = :applicationId")
     List<IdNameDTO> getIdNameDTOsByApplicationId(@Param("applicationId") UUID applicationId);
 
+    @Query("SELECT s.id AS id, s.name AS name " +
+            "FROM Scope s JOIN ResourceScope rs ON s.id = rs.id.scopeId " +
+            "WHERE rs.id.resourceId = :resourceId")
+    List<IdNameDTO> getIdNameDTOsByResourceId(@Param("resourceId") UUID resourceId);
+
+
     @Query("SELECT s.id FROM Scope s " +
             "JOIN ResourceScope rs ON s.id = rs.id.scopeId " +
             "WHERE rs.id.resourceId = :resourceId")
     List<UUID> getIdsByResourceId(@Param("resourceId") UUID resourceId);
+
+    @Query("SELECT s.id FROM Scope s " +
+            "JOIN PermissionScope ps ON s.id = ps.id.scopeId " +
+            "WHERE ps.id.permissionId = :permissionId")
+    List<UUID> getIdsByPermissionId(@Param("permissionId") UUID permissionId);
 }

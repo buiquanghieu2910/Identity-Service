@@ -10,17 +10,16 @@ import java.util.UUID;
 
 /**
  * @author BUI_QUANG_HIEU
- * 5/27/2025
- * ScopeResponse.java
+ * 5/29/2025
+ * PermissionResponse.java
  */
 @Getter
 @Setter
 @Accessors(chain = true)
-public class ScopeResponse extends CommonResponse {
-    private UUID applicationId;
+public class PermissionResponse extends CommonResponse {
     private String name;
     private String description;
-    private List<IdNameResponse> resources;
-    private List<IdNameResponse> permissions;
+    private UUID applicationId;
+    private UUID resourceId;
+    private List<UUID> scopeIds;
 }
-

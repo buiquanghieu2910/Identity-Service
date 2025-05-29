@@ -1,7 +1,7 @@
 package org.identity.identityserver.repository;
 
 import org.identity.identityserver.model.dto.IdNameDTO;
-import org.identity.identityserver.model.entity.Resource;
+import org.identity.identityserver.model.entity.Permission;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -13,13 +13,13 @@ import java.util.UUID;
 
 /**
  * @author BUI_QUANG_HIEU
- * 5/27/2025
- * ResourceRepository.java
+ * 5/29/2025
+ * PermissionRepository.java
  */
 @Repository
-public interface ResourceRepository extends JpaRepository<Resource, UUID>, JpaSpecificationExecutor<Resource> {
-    @Query("SELECT r.id AS id, r.name AS name " +
-            "FROM Resource r JOIN ResourceScope rs ON r.id = rs.id.resourceId " +
-            "WHERE rs.id.scopeId = :scopeId")
+public interface PermissionRepository extends JpaRepository<Permission, UUID>, JpaSpecificationExecutor<Permission> {
+    @Query("SELECT p.id AS id, p.name AS name " +
+            "FROM Permission p JOIN PermissionScope ps ON p.id = ps.id.permissionId " +
+            "WHERE ps.id.scopeId = :scopeId")
     List<IdNameDTO> getIdNameDTOsByScopeId(@Param("scopeId") UUID scopeId);
 }

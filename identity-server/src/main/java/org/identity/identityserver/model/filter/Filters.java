@@ -1,5 +1,7 @@
 package org.identity.identityserver.model.filter;
 
+import org.identity.identityserver.model.entity.Permission;
+import org.identity.identityserver.model.entity.Permission_;
 import org.identity.identityserver.model.entity.Resource;
 import org.identity.identityserver.model.entity.Resource_;
 import org.identity.identityserver.util.Specifications;
@@ -13,5 +15,9 @@ import org.springframework.data.jpa.domain.Specification;
 public class Filters {
     public static Specification<Resource> toSpecification(ResourceFilter filter) {
         return Specification.where(Specifications.eq(Resource_.applicationId, filter.getApplicationId()));
+    }
+
+    public static Specification<Permission> toSpecification(PermissionFilter filter) {
+        return Specification.where(Specifications.eq(Permission_.applicationId, filter.getApplicationId()));
     }
 }

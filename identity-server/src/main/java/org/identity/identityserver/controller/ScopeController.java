@@ -33,4 +33,14 @@ public class ScopeController {
     public Response<List<IdNameResponse>> getIdNamesByApplicationId(@PathVariable("applicationId") UUID applicationId) {
         return scopeService.getIdNamesByApplicationId(applicationId);
     }
+
+    @GetMapping("by-resource-id/{resourceId}/id-names")
+    public Response<List<IdNameResponse>> getIdNamesByResourceId(@PathVariable("resourceId") UUID resourceId) {
+        return scopeService.getIdNamesByResourceId(resourceId);
+    }
+
+    @GetMapping("{id}")
+    public Response<ScopeResponse> getScopeById(@PathVariable("id") UUID id) {
+        return scopeService.getScopeById(id);
+    }
 }

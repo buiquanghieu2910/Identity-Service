@@ -11,8 +11,8 @@ import org.identity.identityserver.model.response.base.Response;
 import org.identity.identityserver.repository.ApplicationRepository;
 import org.identity.identityserver.repository.ResourceRepository;
 import org.identity.identityserver.repository.ResourceUriRepository;
+import org.identity.identityserver.repository.ScopeRepository;
 import org.identity.identityserver.service.ResourceService;
-import org.identity.identityserver.service.ScopeService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class ResourceServiceImpl implements ResourceService {
     private final ResourceRepository resourceRepository;
     private final ResourceUriRepository resourceUriRepository;
     private final ApplicationRepository applicationRepository;
-    private final ScopeService scopeService;
+    private final ScopeRepository scopeRepository;
 
     @Override
     public Response<List<ResourceResponse>> getAllResources(ResourceFilter filter, Pageable pageable) {
@@ -45,7 +45,7 @@ public class ResourceServiceImpl implements ResourceService {
         var resource = resourceRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(ErrorCode.DATA_NOT_FOUND, "Resource not found with id: " + id));
         var uris = resourceUriRepository.getUrisByResourceId(id);
-        var scopeIds = scopeService.getIdsByResourceId(id);
+        var scopeIds = scopeRepository.getIdsByResourceId(id);
         var response = Resource2ResourceResponseMapper.INSTANCE.map(resource)
                 .setUris(uris)
                 .setScopeIds(scopeIds);

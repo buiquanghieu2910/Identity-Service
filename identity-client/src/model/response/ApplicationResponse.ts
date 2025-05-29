@@ -1,7 +1,7 @@
 import { Status } from '@/model/enumable/Status.ts'
 import { ResponseCommon } from '@/model/Common.ts'
 
-export class ApplicationResponse extends ResponseCommon{
+export class ApplicationResponse extends ResponseCommon {
   name: string = ''
   clientId: string = ''
   clientSecret: string = ''

@@ -1,13 +1,15 @@
 package org.identity.identityserver.model.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.identity.identityserver.model.entity.base.BaseEntity;
-import org.identity.identityserver.model.entity.embedded.ResourceScopeId;
 
 import java.util.UUID;
 
@@ -29,7 +31,6 @@ public class Permission extends BaseEntity {
     private UUID id;
     private String name;
     private String description;
-    private UUID roleId;
-    @Embedded
-    private ResourceScopeId resourceScopeId;
+    private UUID applicationId;
+    private UUID resourceId;
 }

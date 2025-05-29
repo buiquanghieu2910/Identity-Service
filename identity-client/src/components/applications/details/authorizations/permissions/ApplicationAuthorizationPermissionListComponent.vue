@@ -3,8 +3,8 @@ import type { SearchParams } from '@/model/Common.ts'
 import { PAGE_DEFAULT, PAGE_SIZE_DEFAULT } from '@/constants/Constant.ts'
 import { onMounted, ref } from 'vue'
 import { hideLoading, showLoading } from '@/service/LoadingService.ts'
-import type { ResourceResponse } from '@/model/response/ResourceResponse.ts'
-import { fetchResources } from '@/service/ResourceService.ts'
+import type { PermissionResponse } from '@/model/response/PermissionResponse.ts'
+import { fetchPermissions } from '@/service/PermissionService.ts'
 
 const props = defineProps<{
   applicationId: string;
@@ -28,13 +28,13 @@ const paramSearch: SearchParams = {
   ]
 }
 
-const resources = ref<ResourceResponse[]>([])
+const permissions = ref<PermissionResponse[]>([])
 
-const getResources = async () => {
+const getPermissions = async () => {
   try {
     showLoading()
-    const resp = await fetchResources({ ...paramSearch })
-    resources.value = resp?.data || []
+    const resp = await fetchPermissions({ ...paramSearch })
+    permissions.value = resp?.data || []
   } catch (error) {
   } finally {
     hideLoading()
@@ -42,18 +42,17 @@ const getResources = async () => {
 }
 
 onMounted(async () => {
-  await getResources()
+  await getPermissions()
 })
-
 </script>
 
 <template>
-  <DataTable class="mt-5" :value="resources" :scrollable="true" scrollHeight="500px">
+  <DataTable class="mt-5" :value="permissions" :scrollable="true" scrollHeight="500px">
     <Column v-for="(col, index) in columns" :key="index" :header="col.header" :field="col.field">
       <template #body="slotProps">
         <template v-if="col.dataType==='link'">
           <router-link
-            :to="{name: 'application-authorization-resource-detail', params: {applicationId: props.applicationId, resourceId: slotProps.data.id}}"
+            :to="{name: 'application-authorization-permission-detail', params: {applicationId: props.applicationId, permissionId: slotProps.data.id}}"
             :class="`text-primary-500 hover:underline`">
             {{ slotProps.data[col.field] }}
           </router-link>

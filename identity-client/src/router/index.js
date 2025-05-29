@@ -63,13 +63,23 @@ const router = createRouter({
                 },
                 {
                   path: 'scopes',
-                  component: () => import('@/views/pages/applications/details/authorizations/ApplicationAuthorizationScopeView.vue'),
+                  component: () => import('@/views/pages/applications/details/authorizations/scopes/ApplicationAuthorizationScopeView.vue'),
                   name: 'application-authorization-scopes'
                 },
                 {
+                  path: 'scopes/:scopeId',
+                  component: () => import('@/views/pages/applications/details/authorizations/scopes/ApplicationAuthorizationScopeDetailView.vue'),
+                  name: 'application-authorization-scope-detail'
+                },
+                {
                   path: 'permissions',
-                  component: () => import('@/views/pages/applications/details/authorizations/ApplicationAuthorizationPermissionView.vue'),
+                  component: () => import('@/views/pages/applications/details/authorizations/permissions/ApplicationAuthorizationPermissionView.vue'),
                   name: 'application-authorization-permissions'
+                },
+                {
+                  path: 'permissions/:permissionId',
+                  component: () => import('@/views/pages/applications/details/authorizations/permissions/ApplicationAuthorizationPermissionDetailView.vue'),
+                  name: 'application-authorization-permission-detail'
                 }
               ]
             },

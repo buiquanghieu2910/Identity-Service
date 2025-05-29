@@ -1,9 +1,9 @@
 import { ResponseCommon } from '@/model/Common.ts'
 
-export class ResourceResponse extends ResponseCommon {
+export class PermissionResponse extends ResponseCommon {
   name: string = ''
   description: string = ''
   applicationId: string = ''
-  uris: string[] = []
+  resourceId: string = ''
   scopeIds: string[] = []
 }

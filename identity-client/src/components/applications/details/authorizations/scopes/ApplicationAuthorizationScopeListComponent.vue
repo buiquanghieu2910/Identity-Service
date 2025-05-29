@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import type { SearchParams } from '@/model/Common.ts'
-import { PAGE_DEFAULT, PAGE_SIZE_DEFAULT } from '@/constants/Constant.ts'
 import { onMounted, ref } from 'vue'
+import type { ScopeResponse } from '@/model/response/ScopeResponse.ts'
 import { hideLoading, showLoading } from '@/service/LoadingService.ts'
-import type { ResourceResponse } from '@/model/response/ResourceResponse.ts'
-import { fetchResources } from '@/service/ResourceService.ts'
+import { fetchScopesByApplicationId } from '@/service/ScopeService.ts'
 
 const props = defineProps<{
   applicationId: string;
@@ -15,26 +13,13 @@ const columns = ref([
     { header: 'Description', field: 'description', dataType: 'text' }
   ]
 )
+const scopes = ref<ScopeResponse[]>([])
 
-const paramSearch: SearchParams = {
-  page: PAGE_DEFAULT,
-  size: PAGE_SIZE_DEFAULT,
-  sort: [],
-  search: [
-    {
-      field: 'applicationId',
-      value: props.applicationId
-    }
-  ]
-}
-
-const resources = ref<ResourceResponse[]>([])
-
-const getResources = async () => {
+const getScopes = async () => {
   try {
     showLoading()
-    const resp = await fetchResources({ ...paramSearch })
-    resources.value = resp?.data || []
+    const resp = await fetchScopesByApplicationId(props.applicationId)
+    scopes.value = resp?.data || []
   } catch (error) {
   } finally {
     hideLoading()
@@ -42,18 +27,17 @@ const getResources = async () => {
 }
 
 onMounted(async () => {
-  await getResources()
+  await getScopes()
 })
-
 </script>
 
 <template>
-  <DataTable class="mt-5" :value="resources" :scrollable="true" scrollHeight="500px">
+  <DataTable class="mt-5" :value="scopes" :scrollable="true" scrollHeight="500px">
     <Column v-for="(col, index) in columns" :key="index" :header="col.header" :field="col.field">
       <template #body="slotProps">
         <template v-if="col.dataType==='link'">
           <router-link
-            :to="{name: 'application-authorization-resource-detail', params: {applicationId: props.applicationId, resourceId: slotProps.data.id}}"
+            :to="{name: 'application-authorization-scope-detail', params: {applicationId: props.applicationId, scopeId: slotProps.data.id}}"
             :class="`text-primary-500 hover:underline`">
             {{ slotProps.data[col.field] }}
           </router-link>

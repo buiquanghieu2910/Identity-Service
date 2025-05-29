@@ -17,5 +17,7 @@ public interface ScopeService {
 
     Response<List<IdNameResponse>> getIdNamesByApplicationId(UUID applicationId);
 
-    List<UUID> getIdsByResourceId(UUID resourceId);
+    Response<List<IdNameResponse>> getIdNamesByResourceId(UUID resourceId);
+
+    Response<ScopeResponse> getScopeById(UUID id);
 }
