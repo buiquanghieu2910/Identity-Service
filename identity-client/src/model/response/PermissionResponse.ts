@@ -6,4 +6,5 @@ export class PermissionResponse extends ResponseCommon {
   applicationId: string = ''
   resourceId: string = ''
   scopeIds: string[] = []
+  roleIds: string[] = []
 }

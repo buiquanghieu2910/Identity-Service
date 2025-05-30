@@ -22,4 +22,5 @@ public class PermissionResponse extends CommonResponse {
     private UUID applicationId;
     private UUID resourceId;
     private List<UUID> scopeIds;
+    private List<UUID> roleIds;
 }

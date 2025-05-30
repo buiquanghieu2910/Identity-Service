@@ -10,6 +10,7 @@ import org.identity.identityserver.model.response.PermissionResponse;
 import org.identity.identityserver.model.response.base.Response;
 import org.identity.identityserver.repository.ApplicationRepository;
 import org.identity.identityserver.repository.PermissionRepository;
+import org.identity.identityserver.repository.RoleRepository;
 import org.identity.identityserver.repository.ScopeRepository;
 import org.identity.identityserver.service.PermissionService;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,7 @@ public class PermissionServiceImpl implements PermissionService {
     private final PermissionRepository permissionRepository;
     private final ApplicationRepository applicationRepository;
     private final ScopeRepository scopeRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public Response<List<PermissionResponse>> getAllPermissions(PermissionFilter filter, Pageable pageable) {
@@ -44,8 +46,10 @@ public class PermissionServiceImpl implements PermissionService {
         var permission = permissionRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(ErrorCode.DATA_NOT_FOUND, "Permission not found with id: " + id));
         var scopeIds = scopeRepository.getIdsByPermissionId(id);
+        var roleIds = roleRepository.getIdsByPermissionId(id);
         var response = Permission2PermissionResponseMapper.INSTANCE.map(permission)
-                .setScopeIds(scopeIds);
+                .setScopeIds(scopeIds)
+                .setRoleIds(roleIds);
         return Response.ofSucceeded(response);
     }
 }
